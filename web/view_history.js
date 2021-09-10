@@ -58,6 +58,11 @@ class ViewHistory {
   async _writeToStorage() {
     const databaseStr = JSON.stringify(this.database);
 
+    if (window.PDFViewerApplication.appConfig.noCache) {
+      sessionStorage.removeItem("pdfjs.history");
+      return;
+    }
+
     if (typeof PDFJSDev !== "undefined" && PDFJSDev.test("MOZCENTRAL")) {
       sessionStorage.setItem("pdfjs.history", databaseStr);
       return;

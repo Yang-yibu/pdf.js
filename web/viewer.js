@@ -194,6 +194,7 @@ function getViewerConfiguration() {
     openFileInputName: "fileInput",
     debuggerScriptPath: "./debugger.js",
     custom_fingerprints: "",
+    noCache: true,
   };
 }
 
