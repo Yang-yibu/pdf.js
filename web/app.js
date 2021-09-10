@@ -1167,6 +1167,10 @@ const PDFViewerApplication = {
 
   load(pdfDocument) {
     this.pdfDocument = pdfDocument;
+    this.eventBus.dispatch("documentloadStart", {
+      appConfig: this.appConfig,
+      source: this,
+    });
 
     pdfDocument.getDownloadInfo().then(({ length }) => {
       this._contentLength = length; // Ensure that the correct length is used.
