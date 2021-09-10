@@ -1215,9 +1215,11 @@ const PDFViewerApplication = {
     const pdfThumbnailViewer = this.pdfThumbnailViewer;
     pdfThumbnailViewer.setDocument(pdfDocument);
 
-    const storedPromise = (this.store = new ViewHistory(
-      pdfDocument.fingerprints[0]
-    ))
+    let fingerprints = pdfDocument.fingerprints[0];
+    if (this.appConfig.custom_fingerprints) {
+      fingerprints = fingerprints + "_" + this.appConfig.custom_fingerprints;
+    }
+    const storedPromise = (this.store = new ViewHistory(fingerprints))
       .getMultiple({
         page: null,
         zoom: DEFAULT_SCALE_VALUE,
